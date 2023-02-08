@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: texasui-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: texasui
+  template:
+    metadata:
+      labels:
+        app: texasui
+    spec:
+      containers:
+      - name: texasui
+        image: texasimages.azurecr.io/isitthepie
+        # imagePullPolicy: Never
+        ports:
+        - containerPort: 4200
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: texasui-service
+spec:
+  selector:
+    app: texasui
+  ports:
+  - name: http
+    port: 4200
+    targetPort: 80
+  type: LoadBalancer

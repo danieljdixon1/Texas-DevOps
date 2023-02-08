@@ -1,0 +1,17 @@
+version: '3'
+services:
+  poker:
+    image: livinglikelarry
+    networks:
+      - nubbernucky
+    ports:
+      - "3000:3000"
+  poker-ui:
+    image: isitthepie
+    networks:
+      - nubbernucky
+    ports:
+      - "4200:80"
+
+networks:
+  nubbernucky:
